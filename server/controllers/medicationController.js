@@ -61,7 +61,7 @@ exports.createMedication = asyncHandler(async (req, res) => {
 // @desc    Get a single medication
 // @route   GET /api/medications/:id
 // @access  Private
-const getMedication = asyncHandler(async (req, res) => {
+exports.findMedication = asyncHandler(async (req, res) => {
   const medication = await Medication.findById(req.params.id);
 
   if (!medication) {
@@ -72,17 +72,28 @@ const getMedication = asyncHandler(async (req, res) => {
   // Ensure the medication belongs to the user
   if (medication.userId.toString() !== req.user.id) {
     res.status(401);
-    throw new Error('User not authorized');
+    throw new Error('Not authorized to view this medication');
   }
 
   res.status(200).json(medication);
 });
 
 
-// @desc    Update medication
+// @desc    Update medication and corresponding notification
 // @route   PUT /api/medications/:id
 // @access  Private
-const updateMedication = asyncHandler(async (req, res) => {
+exports.updateMedication = asyncHandler(async (req, res) => {
+  const {
+    name,
+    type,
+    time,
+    frequency,
+    start,
+    end,
+    symptoms,
+    lastTaken,
+  } = req.body;
+
   const medication = await Medication.findById(req.params.id);
 
   if (!medication) {
@@ -96,13 +107,28 @@ const updateMedication = asyncHandler(async (req, res) => {
     throw new Error('User not authorized');
   }
 
-  const updatedMedication = await Medication.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    { new: true }
-  );
+  // Update medication fields
+  medication.name = name || medication.name;
+  medication.type = type || medication.type;
+  medication.time = time || medication.time;
+  medication.frequency = frequency || medication.frequency;
+  medication.start = start || medication.start;
+  medication.end = end || medication.end;
+  medication.symptoms = symptoms || medication.symptoms;
+  medication.lastTaken = lastTaken || medication.lastTaken;
 
-  res.status(200).json(updatedMedication);
+  await medication.save();
+
+  // Find and update the corresponding notification
+  const notification = await Notification.findOne({ medicationId: medication._id });
+
+  if (notification) {
+    notification.time = time || notification.time;
+    notification.frequency = frequency || notification.frequency;
+    await notification.save();
+  }
+
+  res.status(200).json({ medication, notification });
 });
 
 // @desc    Delete medication
