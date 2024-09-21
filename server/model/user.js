@@ -23,6 +23,14 @@ const userSchema = new Schema({
       default: [],
     },
   ],
+  notifications: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Notifications",
+      required: true,
+      default: [],
+    },
+  ],
 });
 
 userSchema.virtual("url").get(function () {

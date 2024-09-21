@@ -41,8 +41,7 @@ const medicationSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    // required: true,
-    // default: "FIX THIS LATER"
+    required: true,
   },
 });
 

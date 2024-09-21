@@ -1,0 +1,22 @@
+.
+├── config
+│   └── db.js
+├── controllers
+│   ├── medicationController.js
+│   └── userController.js
+├── middleware
+│   ├── authMiddleware.js
+│   └── errorMiddleware.js
+├── model
+│   ├── medications.js
+│   ├── notification.js
+│   └── user.js
+├── package-lock.json
+├── package.json
+├── project-structure.txt
+├── routes
+│   ├── medicationRoutes.js
+│   └── userRoutes.js
+└── server.js
+
+6 directories, 14 files
