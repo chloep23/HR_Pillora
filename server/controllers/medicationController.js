@@ -58,14 +58,6 @@ exports.createMedication = asyncHandler(async (req, res) => {
   res.status(201).json(medication);
 });
 
-// @desc    Get all medications for a user
-// @route   GET /api/medications
-// @access  Private
-const getMedications = asyncHandler(async (req, res) => {
-  const medications = await Medication.find({ userId: req.user.id });
-  res.status(200).json(medications);
-});
-
 // @desc    Get a single medication
 // @route   GET /api/medications/:id
 // @access  Private
