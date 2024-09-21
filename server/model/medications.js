@@ -13,13 +13,13 @@ const medicationSchema = new Schema({
   time: [
     {
       type: String,
-      defualt: [],
+      default: [],
     },
   ],
   frequency: [
     {
       type: String,
-      defualt: [],
+      default: [],
     },
   ],
   start: {
@@ -29,10 +29,10 @@ const medicationSchema = new Schema({
   end: {
     type: Date,
   },
-  sympthoms: [
+  symptoms: [
     {
       type: String,
-      defualt: [],
+      default: [],
     },
   ],
   lastTaken: {
@@ -41,7 +41,8 @@ const medicationSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
-    required: true,
+    // required: true,
+    // default: "FIX THIS LATER"
   },
 });
 

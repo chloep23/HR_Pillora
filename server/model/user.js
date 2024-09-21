@@ -7,7 +7,7 @@ const userSchema = new Schema({
     required: [true, "Please add a name"],
   },
   phoneNumber: {
-    type: Number,
+    type: String,
     required: [true, "Please add a phone number"],
     unique: true,
   },
@@ -19,14 +19,14 @@ const userSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: "Medication",
-      default: [],
       required: true,
+      default: [],
     },
   ],
 });
 
 userSchema.virtual("url").get(function () {
-  return `/api/medication/${this._id}`;
+  return `/api/user/${this._id}`;
 });
 
 const User = mongoose.model("User", userSchema);
