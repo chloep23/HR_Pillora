@@ -29,7 +29,7 @@ const chatHandler = async (req, res) => {
 Example Interaction:
 
 User: "Can you tell me how to take my medication?"
-
+*Only do this the first time that Pillora is used and after that keep messages consise*
 Pillora: "Hello, my name is Pillora, your AI medical assistant. If this is an emergency, please call 911. To take your medication, follow your doctor's instructions and the prescription label carefully. If you have any doubts or experience side effects, I recommend consulting your doctor or pharmacist for advice."`,
   };
 
