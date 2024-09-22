@@ -19,7 +19,7 @@ const Dropdown = ({ options, onSelect, placeholder = 'Select an option' }) => {
         <div>
             <button
             type="button"
-            className="inline-flex justify-between w-full rounded-md shadow-sm px-4 py-2 bg-blue font-spartan font-medium text-darkblue hover:bg-gray-50 focus:outline-none"
+            className="inline-flex justify-between w-full rounded-md shadow-sm px-4 py-2 bg-blue font-spartan font-medium text-lightgray hover:bg-gray-50 focus:outline-none"
             onClick={toggleDropdown}
             >
             {selectedValue}
@@ -41,7 +41,7 @@ const Dropdown = ({ options, onSelect, placeholder = 'Select an option' }) => {
 
         {isOpen && (
             <div
-            className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white focus:outline-none z-10"
+            className="text-gray origin-top-right absolute right-0 w-80 rounded-b-md shadow-lg bg-white focus:outline-none z-10"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
@@ -51,7 +51,7 @@ const Dropdown = ({ options, onSelect, placeholder = 'Select an option' }) => {
                 {options.map((option) => (
                 <button
                     key={option}
-                    className="text-darkblue block px-4 py-2 text-sm w-full text-left hover:blue"
+                    className="font-spartan text-darkblue block px-4 py-2 text-sm w-full text-left hover:blue"
                     role="menuitem"
                     tabIndex="-1"
                     onClick={() => handleOptionClick(option)}
