@@ -23,7 +23,6 @@ exports.createMedication = asyncHandler(async (req, res) => {
     throw new Error('Please provide all required fields');
   }
 
-  // Create notification
   const notification = await Notification.create({
     status: true,
     emergencyContact: '',
@@ -34,7 +33,6 @@ exports.createMedication = asyncHandler(async (req, res) => {
     throw new Error('Error creating notification');
   });
 
-  // Create medication
   const medication = await Medication.create({
     name,
     type,
@@ -48,11 +46,9 @@ exports.createMedication = asyncHandler(async (req, res) => {
     notificationId: notification._id,
   });
 
-  // Update notification with medicationId
   notification.medicationId = medication._id;
   await notification.save();
 
-  // Add medication and notification to user's arrays
   const user = await User.findById(req.user.id);
   if (!user) {
     res.status(404);
@@ -150,7 +146,6 @@ exports.deleteMedication = asyncHandler(async (req, res) => {
     throw new Error('User not authorized');
   }
 
-  // Remove notificationId from user's notifications array
   const user = await User.findById(req.user.id);
   if (!user) {
     res.status(404);
@@ -163,17 +158,14 @@ exports.deleteMedication = asyncHandler(async (req, res) => {
     );
     await user.save();
 
-    // Delete the associated notification
     await Notification.findByIdAndDelete(medication.notificationId);
   }
 
-  // Remove medicationId from user's medications array
   user.medications = user.medications.filter(
     (med) => med.toString() !== medication._id.toString()
   );
   await user.save();
 
-  // Delete the medication
   await Medication.deleteOne({ _id: req.params.id });
 
   res.status(200).json({ id: req.params.id });
