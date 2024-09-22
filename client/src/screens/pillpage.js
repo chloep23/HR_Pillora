@@ -3,6 +3,12 @@ import Dropdown from '../components/Dropdown';
 
 export default function PillPage() {
     const[isOpen, setIsOpen] = useState(false);
+
+    const handleSelect = (selectedOption) => {
+        console.log(`Selected: ${selectedOption}`);
+        // You can perform other actions here based on the selected option
+    };
+      
     return(
         <div className="bg-blue min-h-screen">
             <div className = "flex flex-col overflow-y-scroll w-screen min-h-screen mb-20">
@@ -18,37 +24,26 @@ export default function PillPage() {
                             className="w-full px-4 py-2 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
                             placeholder="Prescription Name"
                             />
-                    {/* insert type dropdown*/}
-                    <label className="block mb-3 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
+                    <label className="block mb-3 mt-3 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
                         Medication Type
                     </label>
-                    {/* <Dropdown
-                        options={['Allergy', 'Antibiotic', 'Antidepressants', 'Birth Control', '']}
+                    <Dropdown
+                        options={['Allergy', 'Antibiotic', 'Antidepressant', 'Antidiabetic', 'Antihypertensive', 'Anticoagulants', 'Birth Control']}
                         onSelect={handleSelect}
-                        placeholder="Choose an option"
+                        placeholder="What type of medication?"
                     />
                     
-                    <Dropdown
-                        options={['Apple', 'Banana', 'Cherry']}
-                        onSelect={handleSelect}
-                        placeholder="Select a fruit"
-                    /> */}
-                    <label className="block mb-3 mt-3 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
-                            Types
-                        </label>
-                        <input
-                            type="text"
-                            className="w-full px-4 py-2 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
-                            placeholder="Prescription Name"
-                            />
+
+
                     <label className="block mb-3 mt-3 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
                         Reminder
                     </label>
-                        <input
-                        type="text"
-                        className="w-full px-4 py-2 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
-                        placeholder="How often do you want to be reminded?"
-                        />
+                    <Dropdown
+                        options={['Apple', 'Banana', 'Cherry']}
+                        onSelect={handleSelect}
+                        placeholder="When do you need to be reminded?"
+                    />
+
                     <label className="block mb-3 mt-3 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
                         Start Date
                     </label>
