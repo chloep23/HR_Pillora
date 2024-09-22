@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useSelector } from "react-redux";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function PillItem({name, type, frequency}) {
   return (
@@ -27,6 +29,18 @@ export default function UserPage() {
     const [isLoading, setIsLoading] = useState(false); // Loading state
     const [medications, setMedications] = useState([]);
     const messagesEndRef = useRef(null);
+
+    const notify = () => {
+        toast("This is your reminder!", {
+          style: {
+            backgroundColor: "#CEE8EA",
+            color: "#5F97AB",
+            fontWeight: "bold",
+            padding: "20px",
+            borderRadius: "8px",
+          }
+        });
+    };
 
     const openModal = () => {
       setIsModalOpen(true);
@@ -108,31 +122,14 @@ export default function UserPage() {
         }
       };
     
+      const handleCallClick = () => {
+        window.location.href = 'tel:+1234567890';
+      };
 
-
-    
-
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState(null);
-
-    // useEffect(() => {
-    //     axios.get('http://localhost:8080') 
-    //     .then(response => {
-    //         setName(response.data.name); 
-    //         setLoading(false); 
-    //     })
-    //     .catch(err => {
-    //         setError(err.message); 
-    //         setLoading(false);
-    //     });
-    // }, []); 
-
-    // if (loading) return <div>Loading...</div>;
-    // if (error) return <div>Error: {error}</div>;
 
     return(
-        <div className="bg-blue h-screen">
-            <div className = "flex flex-col w-screen h-screen ">
+        <div className="bg-blue min-h-screen">
+            <div className = "flex flex-col overflow-y-scroll min-h-screen w-screen mb-20">
                 <h1 className="text-darkblue text-5xl text-left tracking-widest ml-10 mt-14 font-spartan">Welcome, </h1>
                 <h1 className="text-darkblue text-5xl text-left tracking-widest ml-10 mt-4 font-spartan">{name}! </h1>
 
@@ -141,7 +138,7 @@ export default function UserPage() {
                         <img src="/assets/images/prescription_icon.png" alt="Prescription Icon" className = "ml-5 mt-4 h-10 w-10 "></img>
                         <h1 className="text-darkblue text-3xl text-left tracking-widest ml-3 mt-5 font-spartan">Prescriptions </h1>
                     </div>
-                    <div className="divide-y divide-gray-400">
+                    <div className="left-0 right-0 mx-auto w-11/12 divide-y divide-solid divide-lightgray">
                         {medications.length > 0 ? (
                             medications.map((med, index) => (
                                 <PillItem
@@ -166,13 +163,13 @@ export default function UserPage() {
                         <h2 className="text-darkblue text-base left-0 right-0 mx-auto tracking-widest mb-3 font-spartan">AI ChatBot </h2>
                     </button>
                     <div className = "flex flex-col w-44 h-60">
-                        <button className = "flex flex-col rounded-3xl drop-shadow-xl w-40 h-28 left-0 right-0 mx-auto bg-white">
+                        <button onClick={notify} className = "flex flex-col rounded-3xl drop-shadow-xl w-40 h-28 left-0 right-0 mx-auto bg-white">
                             <img src="/assets/images/notif_icon.png" alt="Notification Icon" className = "left-0 right-0 mx-auto mt-5 h-12 w-10 "></img>
                             <h1 className="text-darkblue text-base left-0 right-0 mx-auto tracking-widest mt-2 font-spartan">Notify </h1>
                         </button>
-                        <button className = "flex flex-col rounded-3xl drop-shadow-xl w-40 h-28 left-0 right-0 mx-auto mt-5 bg-white">
+                        <button onClick={handleCallClick} className = "flex flex-col rounded-3xl drop-shadow-xl w-40 h-28 left-0 right-0 mx-auto mt-5 bg-white">
                             <img src="/assets/images/doctor_icon.png" alt="Doctor Icon" className = "left-0 right-0 mx-auto mt-5 h-12 w-11 "></img>
-                            <h1 className="text-darkblue text-base left-0 right-0 mx-auto tracking-widest mt-2 font-spartan">Doctor </h1>
+                            <h1 className="text-darkblue text-base left-0 right-0 mx-auto tracking-widest mt-2 font-spartan">Contact </h1>
                         </button>
                     </div>
 
@@ -181,7 +178,7 @@ export default function UserPage() {
             {/* AI Chatbot Modal */}
             {isModalOpen && (
                 <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
-                <div className="flex flex-col overflow-y-scroll bg-blue rounded-3xl shadow-lg w-5/6 h-3/4 max-w-md">
+                <div className="flex flex-col bg-blue rounded-3xl shadow-lg w-5/6 h-3/4 max-w-md">
                     <div className="flex flex-col bg-calendarblue rounded-3xl shadow-lg w-full">
                         <button
                             className="text-2xl text-gray-600 hover:text-gray-900"
@@ -283,6 +280,18 @@ export default function UserPage() {
                             </button>
                         </div>
                     </div> */}
+                    <ToastContainer 
+                        position="top-right" 
+                        autoClose={5000} 
+                        hideProgressBar={false} 
+                        newestOnTop={false} 
+                        closeOnClick 
+                        rtl={false} 
+                        pauseOnFocusLoss 
+                        draggable 
+                        pauseOnHover 
+                    />
         </div>
     );
+  
 };

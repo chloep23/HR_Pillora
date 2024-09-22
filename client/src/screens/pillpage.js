@@ -42,7 +42,7 @@ export default function PillPage() {
         try {
           const response = await axios.post('http://localhost:8080/api/medications/add', formData, config);
           console.log('Medication added:', response.data);
-          navigate('/medications'); // Redirect to medications page or any other page
+          navigate('/user'); // Redirect to medications page or any other page
         } catch (error) {
           console.error('Error adding medication:', error);
         }
@@ -68,11 +68,11 @@ export default function PillPage() {
                 <form onSubmit={onSubmit}>
                 <div className="flex flex-col mt-8 w-80 left-0 right-0 mx-auto">
                 <label className="block mb-3 text-xl text-left font-spartan tracking-widest font-medium text-darkblue">
-                Prescription Name
+                Prescription 
                 </label>
                 <input
                 type="text"
-                className="w-full px-4 py-2 mb-5 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2 mb-5 text-medium font-spartan text-lightgray bg-blue rounded-lg focus:outline-none focus:border-blue-500"
                 placeholder="Prescription Name"
                 name="name"
                 value={name}
@@ -85,8 +85,8 @@ export default function PillPage() {
                 </label>
                 <input
                 type="text"
-                className="w-full px-4 py-2 mb-5 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
-                placeholder="ex: 5:00 PM "
+                className="w-full px-4 py-2 mb-5 text-medium font-spartan text-lightgray bg-blue rounded-lg focus:outline-none focus:border-blue-500"
+                placeholder="Ex: 5:00 PM "
                 name="time"
                 value={time}
                 onChange={onChange}
@@ -97,7 +97,7 @@ export default function PillPage() {
                 Medication Type
                 </label>
                 <Dropdown
-                className="w-full px-4 py-2 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2 text-medium font-spartan text-lightgray bg-blue rounded-lg focus:outline-none focus:border-blue-500"
                 options={['Allergy', 'Antibiotic', 'Antidepressant', 'Antidiabetic', 'Antihypertensive', 'Anticoagulants', 'Birth Control']}
                 onSelect={(option) => handleSelect(option, 'type')}
                 value={type}
@@ -114,17 +114,17 @@ export default function PillPage() {
                 placeholder="When do you need to be reminded?"
               />
 
-                    <label className="block mb-3 text-xl text-left font-spartan tracking-widest font-medium text-darkblue">
+                    <label className="block mb-3 mt-5 text-xl text-left font-spartan tracking-widest font-medium text-darkblue">
                         Start Date
                     </label>
                     <Dropdown
-                className="w-full px-4 py-2 mb-5 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
+
                 options={dateOptions}
                 onSelect={(option) => handleSelect(option, 'start')}
                 value={start}
                 placeholder="Select a date"
               />
-                    <label className="block mb-1 text-xl text-left font-spartan mt-2 tracking-widest font-medium text-darkblue">
+                    <label className="block mb-3 mt-5 text-xl text-left font-spartan tracking-widest font-medium text-darkblue">
                         End Date
                     </label>
                     <Dropdown
@@ -133,23 +133,23 @@ export default function PillPage() {
                 value={end}
                 placeholder="Select a date"
               />
-                    <label className="block mb-1 text-xl text-left font-spartan mt-2 tracking-widest font-medium text-darkblue">
+                    <label className="block mb-3 mt-5 text-xl text-left font-spartan tracking-widest font-medium text-darkblue">
                         Symptoms
                     </label>
                     <input
                 type="text"
-                className="w-full px-4 py-8 text-medium font-spartan mt-2 text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-8 mb-5 text-medium font-spartan text-lightgray bg-blue rounded-lg focus:outline-none focus:border-blue-500"
                 placeholder="How have you been feeling?"
                 name="symptoms"
                 value={symptoms}
                 onChange={onChange}
               />
-                    <label className="block mb-1 text-xl text-left font-spartan mt-2 tracking-widest font-medium text-darkblue">
+                    <label className="block mb-3 text-xl text-left font-spartan tracking-widest font-medium text-darkblue">
                         Emergency Contact
                     </label>
                     <input
                 type="text"
-                className="w-full px-4 py-2 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2 text-medium font-spartan text-lightgray bg-blue rounded-lg focus:outline-none focus:border-blue-500"
                 placeholder="Who can we call for you?"
                 name="emergencyContact"
                 value={emergencyContact}
@@ -158,7 +158,7 @@ export default function PillPage() {
                     </div>
                     <button
                         type="submit"
-                        className="left-0 right-0 mx-auto mt-4 mb-4 w-80 px-4 py-2 font-medium font-spartan text-white bg-calendarblue rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-white"
+                        className="flex flex-col items-center justify-center left-0 right-0 mx-auto mt-8 mb-4 w-80 px-4 py-2 font-medium font-spartan text-white text-center bg-calendarblue rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-white"
                     >
                         Submit
                     </button>
@@ -173,5 +173,5 @@ export default function PillPage() {
 
             
         </div>
-    )
+    );
 };
