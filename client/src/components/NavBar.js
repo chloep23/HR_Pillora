@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+
 const NavBar = () => {
 
     const [active, setActive] = useState("");
@@ -23,18 +24,20 @@ const NavBar = () => {
     }, []);
 
     return (
-        <div className="fixed bottom-0 w-full bg-white rounded flex justify-around p-4">
-        <button
-            className="bg-gray-200 font-spartan text-darkblue py-2 px-4 rounded hover:bg-gray-300 transition duration-300"
-        >
-            Calendar
-        </button>
-        <button
-            className="bg-gray-200 font-spartan text-darkblue py-2 px-4 rounded hover:bg-gray-300 transition duration-300"
-            >
-            User
-        </button>
+        <nav className="w-full flex items-center rounded-t--3xl py-5 fixed top-0 z-20">
+        <div className="fixed bottom-0 w-full bg-white rounded-t-3xl flex justify-around p-4">
+        <Link to ="/pill">
+          <button className = "h-10 w-10 ">
+            <img src="/assets/images/pills_icon.png" alt="Pills Icon" className = "h-10 w-10 "></img>
+          </button>
+        </Link>
+        <Link to ="/user">
+          <button className = "h-10 w-10 ">
+            <img src="/assets/images/profile_icon.png" alt="Pills Icon" className = "h-10 w-10 "></img>
+          </button>
+        </Link>
         </div>
+        </nav>
     );
 };
 
