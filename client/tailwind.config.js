@@ -1,19 +1,17 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./App.{js,jsx,ts,tsx}", "./UserPage.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     extend: {
-      colors:{
-        blue : "#CEE8EA",
-        turqoise : "#5F97AB",
-        darkblue : "#71A2D0"
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
       },
-
-      fontFamily: {
-        spartanbold: ['LeagueSpartan_800ExtraBold', 'sans-serif']
-      },
-    
     },
-    plugins: [],
-  }
-}
+  },
+  plugins: [],
+};
