@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const notificationSchema = new Schema({
   status: {
     type: Boolean,
-    default: false,
+    default: true,
   },
   emergencyContact: {
     type: String,
@@ -16,7 +16,7 @@ const notificationSchema = new Schema({
   },
   medicationId: {
     type: Schema.Types.ObjectId,
-    required: true,
+    default: null,
   },
 });
 

@@ -23,6 +23,16 @@ exports.createMedication = asyncHandler(async (req, res) => {
     throw new Error('Please provide all required fields');
   }
 
+  const notification = await Notification.create({
+    status: true,
+    emergencyContact: '',
+    guardianAlert: false,
+  }).catch(err => {
+    console.error('Error creating notification:', err);
+    res.status(500);
+    throw new Error('Error creating notification');
+  });
+
   const medication = await Medication.create({
     name,
     type,
@@ -33,18 +43,11 @@ exports.createMedication = asyncHandler(async (req, res) => {
     symptoms,
     lastTaken,
     userId: req.user.id,
+    notificationId: notification._id,
   });
 
-  const notification = await Notification.create({
-    userId: req.user.id,
-    medicationId: medication._id,
-    time,
-    frequency,
-  }).catch(err => {
-    console.error('Error creating notification:', err);
-    res.status(500);
-    throw new Error('Error creating notification');
-  });
+  notification.medicationId = medication._id;
+  await notification.save();
 
   const user = await User.findById(req.user.id);
   if (!user) {
@@ -69,7 +72,6 @@ exports.findMedication = asyncHandler(async (req, res) => {
     throw new Error('Medication not found');
   }
 
-  // Ensure the medication belongs to the user
   if (medication.userId.toString() !== req.user.id) {
     res.status(401);
     throw new Error('Not authorized to view this medication');
@@ -101,13 +103,11 @@ exports.updateMedication = asyncHandler(async (req, res) => {
     throw new Error('Medication not found');
   }
 
-  // Ensure the medication belongs to the user
   if (medication.userId.toString() !== req.user.id) {
     res.status(401);
     throw new Error('User not authorized');
   }
 
-  // Update medication fields
   medication.name = name || medication.name;
   medication.type = type || medication.type;
   medication.time = time || medication.time;
@@ -119,7 +119,6 @@ exports.updateMedication = asyncHandler(async (req, res) => {
 
   await medication.save();
 
-  // Find and update the corresponding notification
   const notification = await Notification.findOne({ medicationId: medication._id });
 
   if (notification) {
@@ -134,7 +133,7 @@ exports.updateMedication = asyncHandler(async (req, res) => {
 // @desc    Delete medication
 // @route   DELETE /api/medications/:id
 // @access  Private
-const deleteMedication = asyncHandler(async (req, res) => {
+exports.deleteMedication = asyncHandler(async (req, res) => {
   const medication = await Medication.findById(req.params.id);
 
   if (!medication) {
@@ -142,13 +141,32 @@ const deleteMedication = asyncHandler(async (req, res) => {
     throw new Error('Medication not found');
   }
 
-  // Ensure the medication belongs to the user
   if (medication.userId.toString() !== req.user.id) {
     res.status(401);
     throw new Error('User not authorized');
   }
 
-  await medication.remove();
+  const user = await User.findById(req.user.id);
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  if (medication.notificationId) {
+    user.notifications = user.notifications.filter(
+      (notif) => notif.toString() !== medication.notificationId.toString()
+    );
+    await user.save();
+
+    await Notification.findByIdAndDelete(medication.notificationId);
+  }
+
+  user.medications = user.medications.filter(
+    (med) => med.toString() !== medication._id.toString()
+  );
+  await user.save();
+
+  await Medication.deleteOne({ _id: req.params.id });
 
   res.status(200).json({ id: req.params.id });
 });
