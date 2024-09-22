@@ -38,6 +38,5 @@ app.use(express.static(path.join(__dirname, "public")));
 // routes
 app.use("/api/user", userRoutes);
 app.use("/api/medications", medicationRoutes);
-app.use("/api/chat", chatRoutes)
 
 server.listen(port, () => console.log(`Server started on port ${port}`));
