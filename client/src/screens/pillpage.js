@@ -24,8 +24,8 @@ export default function PillPage() {
     return(
         <div className="bg-blue min-h-screen">
             <div className = "flex flex-col overflow-y-scroll w-screen min-h-screen mb-20">
-                <img src="/assets/images/Pillora_logo.png" alt="Main Icon" className = "left-0 right-0 mx-auto h-32 w-32 mt-10 "></img>
-                <div className= "mt-10 left-0 right-0 mx-auto flex flex-col w-85 h-auto bg-white rounded-2xl shadow-xl">
+                <img src="/assets/images/Pillora_logo.png" alt="Main Icon" className = "left-0 right-0 mx-auto h-32 w-32 mt-5 "></img>
+                <div className= "mt-5 left-0 right-0 mx-auto flex flex-col w-85 h-auto bg-white rounded-2xl shadow-xl">
                 <form>
                     <div className="flex flex-col mt-2 w-80 left-0 right-0 mx-auto">
                     <label className="block mb-3 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
