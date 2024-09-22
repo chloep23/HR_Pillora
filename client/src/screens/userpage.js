@@ -48,7 +48,32 @@ export default function UserPage() {
 
                 </div>
             </div>
-            
+            {/* AI Chatbot Modal */}
+            {isModalOpen && (
+                <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
+                <div className="flex flex-col bg-blue p-6 rounded-3xl shadow-lg w-5/6 h-1/2 max-w-md">
+                    <button
+                        className="text-2xl text-gray-600 hover:text-gray-900"
+                        onClick={closeModal}
+                    >
+                        {/* < /> */}
+                    </button>
+                    <div className="flex justify-between items-center mr-5">
+                        <img src="/assets/images/ai_icon.png" alt="AI Icon" className = "h-20 w-18 "></img>
+                        <div className="flex flex-col">
+                            <h2 className="text-darkblue text-2xl text-left font-spartan font-bold">Meet Pillora</h2>
+                            <h2 className="text-darkblue text-lg text-left font-spartan font-bold">How can I help?</h2>
+                        </div>
+                    </div>
+                    <button
+                    onClick={closeModal}
+                    className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                    >
+                    Close
+                    </button>
+                </div>
+                </div>
+            )}
         </div>
     )
 };

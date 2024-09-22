@@ -21,8 +21,14 @@ const LoginPage = () => {
 
     useEffect(() => {
         if(isError) {
-            
+            console.log(message)
         }
+
+        if(isSuccess || user) {
+            navigate('/user')
+        }
+
+
     }, [user, isError, isSuccess, message, navigate, dispatch])
 
     const onChange = (e) => {
@@ -49,7 +55,7 @@ const LoginPage = () => {
         <>
             <div className="flex flex-col items-center justify-center h-screen w-screen bg-blue">
             
-                <div className="flex flex-col w-85 h-auto bg-white rounded-2xl shadow-xl">
+                <div className="flex flex-col w-85 h-auto bg-white rounded-2xl shadow-xl mb-10">
                     <img src="./assets/images/logo.png" alt="Logo" className="left-0 right-0 mx-auto mt-10 h-auto w-80" />
 
                     <form onSubmit={onSubmit}>
@@ -82,7 +88,6 @@ const LoginPage = () => {
                         onChange={onChange}
                         />
                     </div>
-                    {/* CHLOE FIX STYLING :) */}
                     <div className="flex flex-col mt-10 w-80 left-0 right-0 mx-auto">
                         <label className="block ml-2 mb-1 font-spartan text-left text-2xl tracking-widest font-medium text-darkblue">
                         Password
@@ -97,16 +102,6 @@ const LoginPage = () => {
                         onChange={onChange}
                         />
                     </div>
-                    {/* <div className="flex flex-col mt-10 w-80 left-0 right-0 mx-auto">
-                        <label className="block ml-2 mb-1 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
-                        Password 
-                        </label>
-                        <input
-                        type="password"
-                        className="w-full px-4 py-2 text-medium font-spartan text-white bg-blue rounded-lg focus:outline-none focus:border-blue-500"
-                        placeholder="Create a password"
-                        />
-                    </div> */}
                     <button
                         type="submit"
                         className="flex items-center justify-center mt-10 mb-5 w-80 px-4 py-2 left-0 right-0 mx-auto font-medium font-spartan text-white text-center text-xl bg-calendarblue rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-white"
