@@ -8,13 +8,12 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 const http = require("http"); // new
-const { Configuration, OpenAIApi } = require('openai');
+// const { Configuration, OpenAIApi } = require('openai');
 // connect to the database
 connectDB();
 // require routers
 const userRoutes = require("./routes/userRoutes")
 const medicationRoutes = require('./routes/medicationRoutes');
-const chatRoutes = require('./routes/chatRoutes');
 
 // create an App
 const app = express();
@@ -23,7 +22,7 @@ const server = http.createServer(app);
 // Setup and Error Handling
 app.use(
   cors({
-    origin: "http://localhost:8080",
+    origin: "http://localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "DELETE"],
   })

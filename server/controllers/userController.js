@@ -1,4 +1,6 @@
 const User = require("../model/user");
+const Medication = require("../model/medications");
+const Notification = require("../model/notification");
 const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -84,4 +86,18 @@ exports.getAllMedications = asyncHandler(async (req, res) => {
     throw new Error('User not found');
   }
   res.status(200).json(user.medications);
+});
+
+// @desc    Get current user information
+// @route   GET /api/users/me
+// @access  Private
+exports.getMe = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.user.id); // Add other arrays as needed
+
+  if (!user) {
+    res.status(404);
+    throw new Error('User not found');
+  }
+
+  res.status(200).json(user);
 });
