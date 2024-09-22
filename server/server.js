@@ -14,6 +14,7 @@ connectDB();
 // require routers
 const userRoutes = require("./routes/userRoutes")
 const medicationRoutes = require('./routes/medicationRoutes');
+const chatRoutes = require('./routes/chatRoutes')
 
 // create an App
 const app = express();
