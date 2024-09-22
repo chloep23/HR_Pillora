@@ -38,6 +38,10 @@ const medicationSchema = new Schema({
   lastTaken: {
     type: Date,
   },
+  recallStatus: {
+    type: Boolean,
+    default: false
+  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
