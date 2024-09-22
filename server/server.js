@@ -9,12 +9,13 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 const http = require("http"); // new
-
+const { Configuration, OpenAIApi } = require('openai');
 // connect to the database
 connectDB();
 // require routers
 const userRoutes = require("./routes/userRoutes")
 const medicationRoutes = require('./routes/medicationRoutes');
+const chatRoutes = require('./routes/chatRoutes');
 
 // create an App
 const app = express();
@@ -37,5 +38,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // routes
 app.use("/api/user", userRoutes);
 app.use("/api/medications", medicationRoutes);
+app.use("/api/chat", chatRoutes)
 
 server.listen(port, () => console.log(`Server started on port ${port}`));
