@@ -2,6 +2,27 @@ const User = require("../model/user");
 const Medication = require('../model/medications');
 const Notification = require("../model/notification");
 const asyncHandler = require('express-async-handler');
+const axios = require('axios');
+
+async function checkRecallStatus(drugName) {
+  const url = `https://api.fda.gov/drug/enforcement.json?search=product_description:"${drugName}" AND recall_initiation_date:[20240822+TO+20240921]`;
+
+  try {
+    const response = await axios.get(url);
+
+    if (response?.data?.results && response.data.results.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    if (error.response && error.response.status === 404) {
+      return false;
+    }
+    console.error('Error checking recall status:', error);
+    throw error; // Re-throw the error if it's not a 404 error
+  }
+}
 
 // @desc    Create new medication
 // @route   POST /api/medications
@@ -33,6 +54,8 @@ exports.createMedication = asyncHandler(async (req, res) => {
     throw new Error('Error creating notification');
   });
 
+  const isRecalled = await checkRecallStatus(name);
+
   const medication = await Medication.create({
     name,
     type,
@@ -44,6 +67,7 @@ exports.createMedication = asyncHandler(async (req, res) => {
     lastTaken,
     userId: req.user.id,
     notificationId: notification._id,
+    recallStatus: isRecalled,
   });
 
   notification.medicationId = medication._id;
