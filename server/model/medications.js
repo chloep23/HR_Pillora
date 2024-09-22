@@ -43,6 +43,11 @@ const medicationSchema = new Schema({
     ref: "User",
     required: true,
   },
+  notificationId: {
+    type: Schema.Types.ObjectId,
+    ref: "NotificationID",
+    required: true,
+  }
 });
 
 medicationSchema.virtual("url").get(function () {
