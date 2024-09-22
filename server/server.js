@@ -9,7 +9,7 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 const http = require("http"); // new
-const { Configuration, OpenAIApi } = require('openai');
+// const { Configuration, OpenAIApi } = require('openai');
 // connect to the database
 connectDB();
 // require routers
@@ -23,7 +23,7 @@ const server = http.createServer(app);
 // Setup and Error Handling
 app.use(
   cors({
-    origin: "http://localhost:8080",
+    origin: "http://localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "DELETE"],
   })

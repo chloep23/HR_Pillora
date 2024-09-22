@@ -12,41 +12,45 @@ const getFiveDayRange = () => {
 
 function CalendarHeader() {
     const days = getFiveDayRange();
+    const today = new Date();
 
     return (
-        <div className="flex justify-center items-center space-x-4 bg-gray-200 p-4 rounded-md">
+        <>
+        <div className="text-left text-lg font-spartan text-white ml-7 font-bold">
+                {format(today, 'EEEE, MMM dd, yyyy')}
+        </div>
+        <div className="flex justify-center items-center space-x-4 bg-gray-200 p-4 rounded-md mb-10">
         {days.map((day, index) => {
             const isToday = format(day, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd');
             return (
             <div
                 key={index}
-                className={`p-4 rounded-md ${
-                isToday ? 'bg-blue-500 text-white font-bold' : 'bg-white text-gray-700'
+                className={`p-4 rounded-full font-spartan  ${
+                isToday ? 'bg-blue text-gray' : 'bg-white text-calendarblue'
                 }`}
             >
-                <div className="text-lg">{format(day, 'MMM dd')}</div>
+                <div className="text-lg mt-2">{format(day, 'dd')}</div>
+                <div className="text-sm mb-2">{format(day, 'EEE')}</div> 
             </div>
             );
         })}
         </div>
+        </>
     );
 }
 
 function Calendarpage() {
     return (
-        <div className="flex flex-col items-center justify-center w-screen h-screen bg-blue">
-            <div className = "flex flex-col rounded-3xl drop-shadow-xl w-screen h-60 left-0 right-0 mx-auto bg-calendarblue">
+        <div className="flex flex-col items-center w-screen h-screen bg-blue">
+            <div className = "flex flex-col rounded-b-3xl drop-shadow-xl w-screen h-auto left-0 right-0 mx-auto bg-calendarblue">
+            <h1 className="text-white text-5xl text-left tracking-widest ml-7 mt-10 font-spartan">Pillora </h1>
                 <CalendarHeader />
             </div>
-        <div className="mt-16 p-4 text-center">
-            {/* Additional content below the fixed header */}
-            <h1 className="text-2xl font-bold mb-4">Content Below Calendar Header</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat est nec urna fermentum.</p>
-            <p>Scroll down to see more content...</p>
-            <div className="mt-32">
-            <p>More content here...</p>
-            </div>
-        </div>
+            <div className = "flex flex-col rounded-3xl drop-shadow-xl w-85 h-60 left-0 right-0 mx-auto mt-10 bg-white">
+                    <div className = "flex justify-content">
+                        <h1 className="text-calendarblue text-3xl text-right tracking-widest ml-3 mt-5 font-spartan"> Pill A </h1>
+                    </div>
+                </div>
         </div>
     );
 }

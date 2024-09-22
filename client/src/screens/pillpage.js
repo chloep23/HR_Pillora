@@ -24,8 +24,8 @@ export default function PillPage() {
     return(
         <div className="bg-blue min-h-screen">
             <div className = "flex flex-col overflow-y-scroll w-screen min-h-screen mb-20">
-                <h1 className="text-darkblue text-5xl text-left tracking-widest ml-10 mt-7 mb-2 font-spartan">Pill A </h1>
-                <div className= "left-0 right-0 mx-auto mt-5 flex flex-col w-85 h-auto bg-white rounded-2xl shadow-xl">
+                <img src="/assets/images/Pillora_logo.png" alt="Main Icon" className = "left-0 right-0 mx-auto h-32 w-32 mt-10 "></img>
+                <div className= "mt-10 left-0 right-0 mx-auto flex flex-col w-85 h-auto bg-white rounded-2xl shadow-xl">
                 <form>
                     <div className="flex flex-col mt-2 w-80 left-0 right-0 mx-auto">
                     <label className="block mb-3 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
@@ -44,10 +44,8 @@ export default function PillPage() {
                         onSelect={handleSelect}
                         placeholder="What type of medication?"
                     />
-                    
 
-
-                    <label className="block mb-3 mt-3 text-2xl text-left font-spartan tracking-widest font-medium text-darkblue">
+                    <label className="block mb-3 mt-3 text-2xl text-left w-full font-spartan tracking-widest font-medium text-darkblue">
                         Reminder
                     </label>
                     <Dropdown
@@ -91,7 +89,7 @@ export default function PillPage() {
                     </div>
                     <button
                         type="submit"
-                        className="mt-4 mb-4 w-80 px-4 py-2 font-medium font-spartan text-white bg-calendarblue rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-white"
+                        className="left-0 right-0 mx-auto mt-4 mb-4 w-80 px-4 py-2 font-medium font-spartan text-white bg-calendarblue rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-white"
                     >
                         Submit
                     </button>

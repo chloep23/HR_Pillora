@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { register, reset} from '../features/auth/authSlice'
-
+import { register, reset} from '../features/auth/authSlice';
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
 
@@ -104,7 +104,7 @@ const LoginPage = () => {
                     </div>
                     <button
                         type="submit"
-                        className="flex items-center justify-center mt-10 mb-5 w-80 px-4 py-2 left-0 right-0 mx-auto font-medium font-spartan text-white text-center text-xl bg-calendarblue rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-white"
+                        className="flex items-center justify-center mt-10 mb-5 w-80 px-4 py-2 left-0 right-0 mx-auto font-medium font-spartan text-white text-center text-xl bg-calendarblue rounded-3xl hover:bg-blue-600 focus:outline-none focus:bg-opacity-25"
                     >
                         Login
                     </button>
