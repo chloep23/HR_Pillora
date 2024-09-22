@@ -5,12 +5,13 @@ const asyncHandler = require('express-async-handler');
 const axios = require('axios');
 
 async function checkRecallStatus(drugName) {
-  const url = `https://api.fda.gov/drug/enforcement.json?search=product_description:"${drugName}" AND recall_initiation_date:[20240822+TO+20240921]`;
+  const url = `https://api.fda.gov/drug/enforcement.json?search=report_date:[20240622+TO+20240922]+AND+product_description:"${drugName}"&limit=100`;
 
   try {
     const response = await axios.get(url);
+    console.log(response);
 
-    if (response?.data?.results && response.data.results.length > 0) {
+    if (response?.data?.results) {
       return true;
     } else {
       return false;

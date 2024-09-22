@@ -41,7 +41,7 @@ const Dropdown = ({ options, onSelect, placeholder = 'Select an option' }) => {
 
         {isOpen && (
             <div
-            className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white focus:outline-none z-10"
+            className="origin-top-right absolute right-0 w-80 rounded-b-md shadow-lg bg-white focus:outline-none z-10"
             role="menu"
             aria-orientation="vertical"
             aria-labelledby="menu-button"
