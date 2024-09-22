@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "es6", 
+      "baseUrl": "src", 
+      "paths": {
+        "@components/*": ["components/*"], 
+        "@utils/*": ["utils/*"] 
+      },
+      "jsx": "react",
+      "allowSyntheticDefaultImports": true 
+    },
+    "exclude": ["node_modules", "build"], 
+    "include": ["src/**/*"]
+  }
+  
