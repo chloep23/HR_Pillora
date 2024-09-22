@@ -1,7 +1,6 @@
 const express = require("express"); 
 const dotenv = require("dotenv").config();
 const port = process.env.PORT || 8080;
-const colors = require("colors"); // colors in terminal
 const connectDB = require("./config/db");
 const { errorHandler } = require("./middleware/errorMiddleware");
 var path = require("path");
@@ -38,5 +37,6 @@ app.use(express.static(path.join(__dirname, "public")));
 // routes
 app.use("/api/user", userRoutes);
 app.use("/api/medications", medicationRoutes);
+app.use("/api/chat", chatRoutes);
 
 server.listen(port, () => console.log(`Server started on port ${port}`));
