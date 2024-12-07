@@ -16,7 +16,10 @@ module.exports = {
       'darkblue' : '#5F97AB',
       'calendarblue' : "#71A2D0",
       'black' : '#000000',
-      'gray' : '#7d7f7c'
+      'gray' : '#7d7f7c',
+      'lightgray' : '#a9a9a9',
+      'red' : '#960019',
+      'green' : '#56694a',
     },
     fontFamily: {
       spartan: "League Spartan",

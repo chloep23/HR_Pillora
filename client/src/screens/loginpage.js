@@ -55,7 +55,7 @@ const LoginPage = () => {
         <>
             <div className="flex flex-col items-center justify-center h-screen w-screen bg-blue">
             
-                <div className="flex flex-col w-85 h-auto bg-white rounded-2xl shadow-xl mb-10">
+                <div className="flex flex-col w-85 h-auto bg-white rounded-2xl shadow-xl mb-20">
                     <img src="./assets/images/logo.png" alt="Logo" className="left-0 right-0 mx-auto mt-10 h-auto w-80" />
 
                     <form onSubmit={onSubmit}>
